@@ -48,15 +48,24 @@ def hamDist(str1, str2):
 	return diffs
 
 # Running hamDist over sets of 2 lists and appending those values to a list which can be graphed
+sequences = getSeqs("CTGATC.fastq")
 dist = []
-for i in range(len(sequences)):
-	for j in range(i):
-		value = hamDist(sequences[i], sequences[j])
+# comparing all to all is too many comparisons (~half a billion). We'll
+# compare all to the first.
+#for i in range(len(sequences)):
+#    if i % 1000 == 0: print(i)
+#    for j in range(i):
+#        value = hamDist(sequences[i], sequences[j])
+#        dist.append(value)
+#print(dist)
 
-		dist.append(value)
-print(dist)
+for i in range(1, len(sequences)):
+    dist.append(hamDist(sequences[0], sequences[i]))
 
 ### plots the hamming distances as a histogram
+
+
+
 
 plt.hist(dist)
 plt.show()

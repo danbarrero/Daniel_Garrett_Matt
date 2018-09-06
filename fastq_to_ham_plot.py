@@ -33,6 +33,8 @@ def getSeqs(fastq_file):
         for char in seq: assert char in sequenceChars
         if lastLen != None:
             if len(seq) == lastLen: validatedSeqs.append(seq)
+        else:
+            validatedSeqs.append(seq)
         lastLen = len(seq)
     return validatedSeqs
         
